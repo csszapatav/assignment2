@@ -13,7 +13,7 @@ SELECT lastname FROM patient
 | Bing     |
 | Li       |
 +----------+
-7 rows in set (0.01 sec)
+7 rows in set (0.00 sec)
 
 --------------
 SELECT DISTINCT lastname FROM patient
@@ -92,9 +92,12 @@ SELECT firstname, lastname FROM patient WHERE OHIP IN (SELECT patientOHIP FROM d
 +-----------+----------+
 | firstname | lastname |
 +-----------+----------+
+| Suzi      | Brown    |
 | Sean      | Gellar   |
+| Scotty    | Bing     |
+| Yao       | Li       |
 +-----------+----------+
-1 row in set (0.00 sec)
+4 rows in set (0.00 sec)
 
 --------------
 SELECT hospname, city, lastname FROM hospital, doctor WHERE headdoclicensenum  = licennum
@@ -130,9 +133,6 @@ SELECT patient.firstname, doctor.firstname FROM patient, doctor WHERE licennum I
 | Bill      | Joey      |
 | Bill      | Colleen   |
 | Bill      | Ben       |
-| Suzi      | Joey      |
-| Suzi      | Colleen   |
-| Suzi      | Ben       |
 | Jon       | Joey      |
 | Jon       | Colleen   |
 | Jon       | Ben       |
@@ -142,11 +142,8 @@ SELECT patient.firstname, doctor.firstname FROM patient, doctor WHERE licennum I
 | Scotty    | Joey      |
 | Scotty    | Colleen   |
 | Scotty    | Ben       |
-| Yao       | Joey      |
-| Yao       | Colleen   |
-| Yao       | Ben       |
 +-----------+-----------+
-18 rows in set (0.00 sec)
+12 rows in set (0.00 sec)
 
 --------------
 SELECT firstname, lastname FROM doctor WHERE specialty = 'Surgeon' AND worksinhospitalcode IN (SELECT hospcode FROM hospital WHERE hospname = 'Victoria')
@@ -169,8 +166,9 @@ SELECT firstname FROM doctor WHERE licennum NOT IN (SELECT doclicensenum FROM do
 +-----------+
 | Bernie    |
 | Xiangyin  |
+| Ben       |
 +-----------+
-2 rows in set (0.00 sec)
+3 rows in set (0.00 sec)
 
 --------------
 SELECT lastname, firstname FROM doctor WHERE licennum IN (SELECT doclicensenum FROM doctorpatient GROUP BY doclicensenum HAVING COUNT(*)>1)
@@ -180,8 +178,8 @@ SELECT lastname, firstname FROM doctor WHERE licennum IN (SELECT doclicensenum F
 | lastname | firstname |
 +----------+-----------+
 | Shabado  | Joey      |
+| Clooney  | Ross      |
 | Webster  | Mandy     |
-| Spock    | Ben       |
 +----------+-----------+
 3 rows in set (0.00 sec)
 

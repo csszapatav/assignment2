@@ -7,7 +7,7 @@ DELETE FROM doctor WHERE datelicense < '1965-01-01'
 CREATE VIEW file4part4 AS SELECT patient.firstname, patient.lastname, doctor.lastname AS "drname", hospname FROM patient, doctor JOIN hospital WHERE licennum IN (SELECT headdoclicensenum FROM hospital WHERE headdocstartdate > '1995-12-31') AND licennum = headdoclicensenum AND OHIP IN (SELECT patientOHIP FROM doctorpatient WHERE doclicensenum = licennum)
 --------------
 
-Query OK, 0 rows affected (0.01 sec)
+Query OK, 0 rows affected (0.02 sec)
 
 --------------
 SELECT * FROM file4part4
@@ -17,13 +17,10 @@ SELECT * FROM file4part4
 | firstname | lastname | drname  | hospname   |
 +-----------+----------+---------+------------+
 | Bill      | Gellar   | Shabado | St. Joseph |
-| Suzi      | Brown    | Spock   | Victoria   |
 | Colleen   | Gellar   | Shabado | St. Joseph |
 | Scotty    | Bing     | Shabado | St. Joseph |
-| Scotty    | Bing     | Spock   | Victoria   |
-| Yao       | Li       | Spock   | Victoria   |
 +-----------+----------+---------+------------+
-6 rows in set (0.00 sec)
+3 rows in set (0.00 sec)
 
 --------------
 SELECT * FROM doctor
@@ -33,13 +30,14 @@ SELECT * FROM doctor
 | licennum | firstname | lastname   | specialty    | datelicense | worksinhospitalcode |
 +----------+-----------+------------+--------------+-------------+---------------------+
 | GD56     | Joey      | Shabado    | Podiatrist   | 1960-06-24  | BBC                 |
+| HT45     | Ross      | Clooney    | Surgeon      | 1987-06-20  | DDE                 |
 | JK78     | Mandy     | Webster    | Surgeon      | 1990-08-08  | BBC                 |
 | RD34     | Bernie    | Kavorikian | Urologist    | 1980-09-09  | BBC                 |
 | SE66     | Colleen   | Aziz       | Surgeon      | 1989-08-24  | ABC                 |
 | XY33     | Xiangyin  | Li         | Psychiatrist | 2018-01-01  | ABC                 |
 | YT67     | Ben       | Spock      | Pediatrician | 1955-02-20  | DDE                 |
 +----------+-----------+------------+--------------+-------------+---------------------+
-6 rows in set (0.00 sec)
+7 rows in set (0.00 sec)
 
 --------------
 SELECT * FROM doctorpatient
@@ -49,23 +47,24 @@ SELECT * FROM doctorpatient
 | doclicensenum | patientOHIP |
 +---------------+-------------+
 | GD56          |   110112113 |
-| YT67          |   111222111 |
+| HT45          |   111222111 |
 | JK78          |   111222333 |
 | SE66          |   111222333 |
 | GD56          |   333444555 |
+| HT45          |   444555666 |
 | JK78          |   444555666 |
 | GD56          |   667766777 |
+| HT45          |   667766777 |
 | JK78          |   667766777 |
-| YT67          |   667766777 |
-| YT67          |   999999999 |
+| HT45          |   999999999 |
 +---------------+-------------+
-10 rows in set (0.00 sec)
+11 rows in set (0.00 sec)
 
 --------------
 DELETE FROM doctor WHERE lastname = 'Clooney'
 --------------
 
-Query OK, 0 rows affected (0.00 sec)
+Query OK, 1 row affected (0.01 sec)
 
 --------------
 SELECT * FROM doctor
@@ -115,7 +114,7 @@ SELECT * FROM doctor
 | XY33     | Xiangyin  | Li         | Psychiatrist | 2018-01-01  | ABC                 |
 | YT67     | Ben       | Spock      | Pediatrician | 1955-02-20  | DDE                 |
 +----------+-----------+------------+--------------+-------------+---------------------+
-6 rows in set (0.01 sec)
+6 rows in set (0.00 sec)
 
 ERROR 1451 (23000) at line 30: Cannot delete or update a parent row: a foreign key constraint fails (`szapatavassign2db`.`hospital`, CONSTRAINT `hospital_ibfk_1` FOREIGN KEY (`headdoclicensenum`) REFERENCES `doctor` (`licennum`))
 --------------

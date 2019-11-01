@@ -1,0 +1,41 @@
+
+USE szapatavassign2db;
+#  Query 1
+SELECT lastname FROM patient;
+
+#  Query 2
+SELECT DISTINCT lastname FROM patient;
+
+#  Query 3
+SELECT * FROM doctor ORDER BY lastname;
+
+#  Query 4
+SELECT hospname, hospcode FROM hospital WHERE numbed>1500;
+
+#  Query 5
+SELECT lastname, firstname FROM doctor WHERE worksinhospitalcode IN (SELECT hospcode FROM hospital WHERE hospname = 'St. Joseph');
+
+#  Query 6
+SELECT firstname, lastname FROM patient WHERE lastname LIKE "G%";
+
+#  Query 7
+SELECT firstname, lastname FROM patient WHERE OHIP IN (SELECT patientOHIP FROM doctorpatient WHERE doclicensenum IN (SELECT licennum FROM doctor WHERE lastname = "Clooney"));
+
+#  Query 8
+SELECT hospname, city, lastname FROM hospital, doctor WHERE headdoclicensenum  = licennum;
+
+#  Query 9
+SELECT SUM(numbed) AS "Total Number of Beds" FROM hospital;
+
+#  Query 10
+SELECT patient.firstname, doctor.firstname FROM patient, doctor WHERE licennum IN (SELECT headdoclicensenum FROM hospital) AND OHIP IN (SELECT patientOHIP FROM doctorpatient WHERE doclicensenum IN (SELECT headdoclicensenum FROM hospital)) ;
+
+#  Query 11 
+SELECT firstname, lastname FROM doctor WHERE specialty = 'Surgeon' AND worksinhospitalcode IN (SELECT hospcode FROM hospital WHERE hospname = 'Victoria');
+
+#  Query 12
+SELECT firstname FROM doctor WHERE licennum NOT IN (SELECT doclicensenum FROM doctorpatient);
+
+#  Query 13
+SELECT lastname, firstname FROM doctor WHERE licennum IN (SELECT doclicensenum FROM doctorpatient GROUP BY doclicensenum HAVING COUNT(*)>1);
+

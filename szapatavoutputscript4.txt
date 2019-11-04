@@ -7,7 +7,7 @@ DELETE FROM doctor WHERE datelicense < '1965-01-01'
 CREATE VIEW file4part4 AS SELECT patient.firstname, patient.lastname, doctor.lastname AS "drname", hospname FROM patient, doctor JOIN hospital WHERE licennum IN (SELECT headdoclicensenum FROM hospital WHERE headdocstartdate > '1995-12-31') AND licennum = headdoclicensenum AND OHIP IN (SELECT patientOHIP FROM doctorpatient WHERE doclicensenum = licennum)
 --------------
 
-Query OK, 0 rows affected (0.02 sec)
+Query OK, 0 rows affected (0.01 sec)
 
 --------------
 SELECT * FROM file4part4
@@ -56,7 +56,7 @@ SELECT * FROM doctorpatient
 | GD56          |   667766777 |
 | HT45          |   667766777 |
 | JK78          |   667766777 |
-| HT45          |   999999999 |
+| HT45          |   987654321 |
 +---------------+-------------+
 11 rows in set (0.00 sec)
 

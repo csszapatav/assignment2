@@ -11,7 +11,7 @@ SELECT lastname FROM patient
 | Gellar   |
 | Gellar   |
 | Bing     |
-| Li       |
+| Zapata   |
 +----------+
 7 rows in set (0.00 sec)
 
@@ -26,7 +26,7 @@ SELECT DISTINCT lastname FROM patient
 | Brown    |
 | Green    |
 | Bing     |
-| Li       |
+| Zapata   |
 +----------+
 5 rows in set (0.00 sec)
 
@@ -95,7 +95,7 @@ SELECT firstname, lastname FROM patient WHERE OHIP IN (SELECT patientOHIP FROM d
 | Suzi      | Brown    |
 | Sean      | Gellar   |
 | Scotty    | Bing     |
-| Yao       | Li       |
+| Sergio    | Zapata   |
 +-----------+----------+
 4 rows in set (0.00 sec)
 

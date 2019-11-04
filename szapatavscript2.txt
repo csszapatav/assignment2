@@ -8,7 +8,7 @@ FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 (ohip, firstname, lastname);
 SELECT * FROM patient;
-INSERT INTO patient VALUES(999999999, 'Yao', 'Li');
+INSERT INTO patient VALUES(987654321, 'Sergio', 'Zapata');
 
 -- in this section data is being inserted to doctor
 SELECT * FROM doctor;
@@ -42,7 +42,7 @@ INSERT INTO doctorpatient VALUES('GD56', 667766777);
 INSERT INTO doctorpatient VALUES('YT67', 667766777);
 INSERT INTO doctorpatient VALUES('JK78', 667766777);
 INSERT INTO doctorpatient VALUES('YT67', 111222111);
-INSERT INTO doctorpatient VALUES('YT67', 999999999);
+INSERT INTO doctorpatient VALUES('YT67', 987654321);
 SELECT * FROM doctorpatient;
 
 
